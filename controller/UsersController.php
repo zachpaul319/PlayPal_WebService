@@ -10,11 +10,13 @@ class UsersController {
         $user = new User($request->data);
         $user->password = getHashedPassword($user->password);
         $response = new Response();
+
         if (UserModel::createUser($user)) {
             $response->status = 0;
         } else {
             $response->status = 1;
         }
+
         return $response;
     }
 
@@ -25,10 +27,28 @@ class UsersController {
     }
 
     static public function put(Request $request): Response {
+        $user = new User($request->data);
+        $response = new Response();
+
+        if (UserModel::updateUser($user, $request->id)) {
+            $response->status = 0;
+        } else {
+            $response->status = 1;
+        }
+
+        return $response;
 
     }
 
     static public function delete(Request $request): Response {
+        $response = new Response();
 
+        if (UserModel::deleteUser($request->id)) {
+            $response->status = 0;
+        } else {
+            $response->status = 1;
+        }
+
+        return $response;
     }
 }
