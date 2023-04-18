@@ -20,9 +20,9 @@ class UserModel {
         return Database::executeSql($sql, "i", array($userId));
     }
 
-    public static function updateUser(User $user, int $userId): bool {
-        $sql = "UPDATE tblUsersPLAYPAL SET username = ?, password = ?, currentProduction = ?, pastProductions = ? WHERE userId = ?";
-        Database::executeSql($sql, "ssssi", array($user->username, $user->password, $user->currentProduction, $user->pastProductions, $userId));
+    public static function updateUserProductions($currentProduction, $pastProductions, int $userId): bool {
+        $sql = "UPDATE tblUsersPLAYPAL SET currentProduction = ?, pastProductions = ? WHERE userId = ?";
+        Database::executeSql($sql, "ssi", array($currentProduction, $pastProductions, $userId));
         return ! isset(Database::$lastError);
     }
 
