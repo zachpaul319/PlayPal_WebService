@@ -15,11 +15,6 @@ class UserModel {
         return $user;
     }
 
-    public static function getUserInfo(int $userId): array {
-        $sql = "SELECT * FROM tblUsersPLAYPAL WHERE userId = ?";
-        return Database::executeSql($sql, "i", array($userId));
-    }
-
     public static function updateUserProductions($currentProduction, $pastProductions, int $userId): bool {
         $sql = "UPDATE tblUsersPLAYPAL SET currentProduction = ?, pastProductions = ? WHERE userId = ?";
         Database::executeSql($sql, "ssi", array($currentProduction, $pastProductions, $userId));

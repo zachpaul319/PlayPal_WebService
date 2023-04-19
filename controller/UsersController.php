@@ -21,8 +21,9 @@ class UsersController {
     }
 
     static public function get(Request $request): Response {
+        $username = $request->data;
         $response = new Response();
-        $response->data = UserModel::getUserInfo($request->id);
+        $response->data = UserModel::getUser($username);
         return $response;
     }
 

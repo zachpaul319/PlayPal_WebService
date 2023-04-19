@@ -26,11 +26,11 @@ if (method_exists($controller, $method)) {
         }
 
         if ($controller == "UsersController" && $method == "get") {
-            $request->id = $user->userId;
+            $request->data = $user->username;
         }
     }
 
-    if (($method == "get" && $controller != "UsersController") || $method == "put" || $method == "delete") {
+    if ($method == "get" || $method == "put" || $method == "delete") {
         $request->id = $path[2];
     }
 
