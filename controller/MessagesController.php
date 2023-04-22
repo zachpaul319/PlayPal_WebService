@@ -19,6 +19,12 @@ class MessagesController {
         return $response;
     }
 
+    static public function get(Request $request): Response {
+        $response = new Response();
+        $response->data = MessageModel::getMessages($request->id);
+        return $response;
+    }
+
     static public function delete(Request $request): Response {
         $response = new Response();
 

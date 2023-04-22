@@ -9,6 +9,11 @@ class MessageModel {
         return ! isset(Database::$lastError);
     }
 
+    public static function getMessages(int $userId): array {
+        $sql = "SELECT * FROM tblMessagesPLAYPAL WHERE senderId = ? OR recipientId = ? ORDER BY timestamp";
+        return Database::executeSql($sql, "ii", array($userId, $userId));
+    }
+
     public static function deleteMessage(int $messageId): bool {
         $sql = "DELETE FROM tblMessagesPLAYPAL WHERE messageId = ?";
         Database::executeSql($sql, "i", array($messageId));
