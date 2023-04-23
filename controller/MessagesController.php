@@ -20,8 +20,11 @@ class MessagesController {
     }
 
     static public function get(Request $request): Response {
+        $user = new User($request->data);
+        $contactId = $user->userId;
+
         $response = new Response();
-        $response->data = MessageModel::getMessages($request->id);
+        $response->data = MessageModel::getMessages($request->id, $contactId);
         return $response;
     }
 
