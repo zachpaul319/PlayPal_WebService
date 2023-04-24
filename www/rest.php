@@ -34,6 +34,10 @@ if (method_exists($controller, $method)) {
 
     if ($method == "get" || $method == "put" || $method == "delete") {
         $request->id = $path[2];
+
+        if ($controller == "MessagesController") {
+            $request->other_id = $path[3];
+        }
     }
 
     $response = call_user_func(array($controller, $method), $request);
