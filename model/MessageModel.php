@@ -3,10 +3,9 @@ require_once(__DIR__ . "/Database.php");
 require_once(__DIR__ . "/types/Message.php");
 
 class MessageModel {
-    public static function postMessage(Message $message): bool {
-        $sql = "INSERT INTO tblMessagesPLAYPAL (senderId, recipientId, text, timestamp) VALUES (?, ?, ?, ?)";
-        Database::executeSql($sql, "iiss", array($message->senderId, $message->recipientId, $message->text, $message->timestamp->format('Y-m-d H:i:s')));
-        return ! isset(Database::$lastError);
+    public static function postMessage(Message $message) {
+        $postSql = "INSERT INTO tblMessagesPLAYPAL (senderId, recipientId, text, timestamp) VALUES (?, ?, ?, ?)";
+        return Database::executeSql($postSql, "iiss", array($message->senderId, $message->recipientId, $message->text, $message->timestamp->format('Y-m-d H:i:s')));
     }
 
     public static function getMessages(int $userId, int $contactId): array {

@@ -10,12 +10,7 @@ class MessagesController {
         $message->timestamp = DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'));
 
         $response = new Response();
-        if (MessageModel::postMessage($message)) {
-            $response->status = 0;
-        } else {
-            $response->status = 1;
-        }
-
+        $response->data = MessageModel::postMessage($message);
         return $response;
     }
 
