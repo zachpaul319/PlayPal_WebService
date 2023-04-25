@@ -12,12 +12,9 @@ class ContactsController {
     }
 
     static public function delete(Request $request): Response {
-        $user = new User($request->data);
-        $messenger_2_Id = $user->userId;
-
         $response = new Response();
 
-        if (ContactModel::deleteContact($request->id, $messenger_2_Id)) {
+        if (ContactModel::deleteContact($request->id, $request->other_id)) {
             $response->status = 0;
         } else {
             $response->status = 1;
