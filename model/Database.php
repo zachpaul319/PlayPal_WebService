@@ -2,7 +2,7 @@
 require_once(__DIR__ . "/../lib/Config.php");
 
 class Database {
-    static public $lastError;
+    static public $lastError, $errorMessage;
 
     static private function getDbConnection() {
         $servername = Config::getConfigValue("db", "host");
@@ -22,6 +22,7 @@ class Database {
 
     static private function handleError($error, $message) {
         Database::$lastError = $error;
+        Database::$errorMessage = $message;
         //Logger::log(Database::class, "Error: $error, Detail: $message");
     }
 
