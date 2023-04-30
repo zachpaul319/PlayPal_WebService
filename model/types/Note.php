@@ -2,7 +2,7 @@
 require_once(__DIR__ . "/Base.php");
 
 class Note extends Base {
-    public $noteId, $userId, $lineNumber, $color, $content;
+    public $noteId, $userId, $title, $content, $timestamp;
 
     public function __construct($sourceObject)
     {

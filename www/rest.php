@@ -2,6 +2,7 @@
 require_once(__DIR__ . "/../controller/UsersController.php");
 require_once(__DIR__ . "/../controller/ContactsController.php");
 require_once(__DIR__ . "/../controller/MessagesController.php");
+require_once(__DIR__ . "/../controller/NotesController.php");
 require_once(__DIR__ . "/../model/types/Request.php");
 require_once(__DIR__ . "/../model/types/Response.php");
 require_once(__DIR__ . "/../lib/Security.php");

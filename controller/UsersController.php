@@ -31,7 +31,7 @@ class UsersController {
         $user = new User($request->data);
         $response = new Response();
 
-        if (UserModel::updateUserProductions($user->currentProduction, $user->pastProductions, $request->id)) {
+        if (UserModel::updateUserProductions($user, $request->id)) {
             $response->status = 0;
         } else {
             $response->status = 1;
