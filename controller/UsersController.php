@@ -23,7 +23,14 @@ class UsersController {
     static public function get(Request $request): Response {
         $username = $request->data;
         $response = new Response();
-        $response->data = UserModel::getUser($username);
+
+        if ($request->id == -1) {
+            $response->data = UserModel::getAllUsers();
+        } else if ($request->id == 0) {
+            $response->data = UserModel::getUserByUsername($username);
+        } else {
+            $response->data = UserModel::getUserById($request->id);
+        }
         return $response;
     }
 

@@ -11,7 +11,7 @@ function verifyPassword($clearPassword, $hashedPassword) {
 }
 
 function authenticate($username, $password) {
-    $user = UserModel::getUser($username);
+    $user = UserModel::getUserByUsername($username);
     if (verifyPassword($password, $user->password)) {
         return $user;
     } else {

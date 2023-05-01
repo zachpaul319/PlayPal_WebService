@@ -8,11 +8,23 @@ class UserModel {
         return ! isset(Database::$lastError);
     }
 
-    public static function getUser($username): User {
+    public static function getUserByUsername($username): User {
         $sql = "SELECT * FROM tblUsersPLAYPAL WHERE username = ?";
         $results = Database::executeSql($sql, "s", array($username));
         $user = new User($results[0]);
         return $user;
+    }
+
+    public static function getUserById(int $userId): User {
+        $sql = "SELECT * FROM tblUsersPLAYPAL WHERE userId = ?";
+        $results = Database::executeSql($sql, "i", array($userId));
+        $user = new User($results[0]);
+        return $user;
+    }
+
+    public static function getAllUsers(): array {
+        $sql = "SELECT * FROM tblUsersPLAYPAL";
+        return Database::executeSql($sql);
     }
 
     public static function updateUserProductions(User $user, int $userId): bool {
