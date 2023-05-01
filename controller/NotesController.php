@@ -8,14 +8,9 @@ class NotesController {
     static public function post(Request $request): Response {
         $note = new Note($request->data);
         $note->timestamp = DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'));
+
         $response = new Response();
-
-        if (NoteModel::postNote($note)) {
-            $response->status = 0;
-        } else {
-            $response->status = 1;
-        }
-
+        $response->data = NoteModel::postNote($note);
         return $response;
     }
 

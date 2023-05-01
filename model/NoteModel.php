@@ -5,8 +5,7 @@ require_once(__DIR__ . "/types/Note.php");
 class NoteModel {
     static public function postNote(Note $note) {
         $sql = "INSERT INTO tblNotesPLAYPAL (userId, title, content, timestamp) VALUES (?, ?, ?, ?)";
-        Database::executeSql($sql, "isss", array($note->userId, $note->title, $note->content, $note->timestamp->format('Y-m-d H:i:s')));
-        return ! isset(Database::$lastError);
+        return Database::executeSql($sql, "isss", array($note->userId, $note->title, $note->content, $note->timestamp->format('Y-m-d H:i:s')));
     }
 
     static public function getNotes(int $userId) {
