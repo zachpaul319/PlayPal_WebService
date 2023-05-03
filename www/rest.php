@@ -37,7 +37,8 @@ if (method_exists($controller, $method)) {
         $request->id = $path[2];
 
         if ($controller == "MessagesController" || $controller == "ContactsController") {
-            $request->other_id = $path[3];
+            $request->id2 = $path[3];
+            $request->id3 = $path[4];
         }
     }
 

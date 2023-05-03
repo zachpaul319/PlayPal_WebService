@@ -13,6 +13,12 @@ class MessageModel {
         return Database::executeSql($sql, "iiii", array($userId, $userId, $contactId, $contactId));
     }
 
+    public static function getLatestMessage(int $userId, int $contactId): Message {
+        $sql = "SELECT * FROM tblMessagesPLAYPAL WHERE (senderId = ? OR recipientId = ?) AND (senderId = ? OR recipientId = ?) ORDER BY timestamp DESC LIMIT 1";
+        $results = Database::executeSql($sql, "iiii", array($userId, $userId, $contactId, $contactId));
+        return new Message($results[0]);
+    }
+
     public static function deleteMessage(int $messageId): bool {
         $sql = "DELETE FROM tblMessagesPLAYPAL WHERE messageId = ?";
         Database::executeSql($sql, "i", array($messageId));

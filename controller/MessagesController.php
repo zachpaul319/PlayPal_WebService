@@ -16,7 +16,13 @@ class MessagesController {
 
     static public function get(Request $request): Response {
         $response = new Response();
-        $response->data = MessageModel::getMessages($request->id, $request->other_id);
+
+        if ($request->id3 == -1) {
+            $response->data = MessageModel::getLatestMessage($request->id, $request->id2);
+        } else {
+            $response->data = MessageModel::getMessages($request->id, $request->id2);
+        }
+
         return $response;
     }
 

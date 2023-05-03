@@ -14,7 +14,7 @@ class ContactsController {
     static public function delete(Request $request): Response {
         $response = new Response();
 
-        if (ContactModel::deleteContact($request->id, $request->other_id)) {
+        if (ContactModel::deleteContact($request->id, $request->id2)) {
             $response->status = 0;
         } else {
             $response->status = 1;

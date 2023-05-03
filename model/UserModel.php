@@ -11,15 +11,13 @@ class UserModel {
     public static function getUserByUsername($username): User {
         $sql = "SELECT * FROM tblUsersPLAYPAL WHERE username = ?";
         $results = Database::executeSql($sql, "s", array($username));
-        $user = new User($results[0]);
-        return $user;
+        return new User($results[0]);
     }
 
     public static function getUserById(int $userId): User {
         $sql = "SELECT * FROM tblUsersPLAYPAL WHERE userId = ?";
         $results = Database::executeSql($sql, "i", array($userId));
-        $user = new User($results[0]);
-        return $user;
+        return new User($results[0]);
     }
 
     public static function getAllUsers(): array {
